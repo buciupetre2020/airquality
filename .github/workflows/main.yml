@@ -26,7 +26,7 @@ jobs:
           use-public-rspm: true
           
       # import actions for google cloud 
-      - uses: google-github-actions/setup-gcloud@v0
+      - uses: google-github-actions/setup-gcloud@v1
         with: 
           service_account_email: ${{ secrets.GCS_SA }}
           service_account_key: ${{ secrets.GCS_KEY }}
@@ -46,8 +46,8 @@ jobs:
           Rscript "main.R"           
       - name: Commit files on google cloud storage
         run: |
-          gsutil mv data/*statii* gs://poluare/statii
-          gsutil mv data/*info* gs://poluare/info
+          gsutil mv -n data/*statii* gs://poluare/statii
+          gsutil mv -n data/*info* gs://poluare/info
           rm -r data/*
           
         env: 
