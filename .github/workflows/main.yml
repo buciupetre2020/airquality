@@ -16,6 +16,7 @@ jobs:
      uses: 'google-github-actions/auth@v2'
      with:
        token_format: 'access_token'
+       project_id: $${{ secrets.PROJECT_ID }}
        workload_identity_provider: ${{ secrets.GCS_WIF }}
        service_account: ${{ secrets.GCS_SA }}
        
