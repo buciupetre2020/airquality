@@ -24,7 +24,14 @@ jobs:
         with:
           # uses the RStudio Package Manager
           use-public-rspm: true
-        
+          
+      # import actions for google cloud 
+      - uses: google-github-actions/setup-gcloud@v0
+        with: 
+          service_account_email: ${{ secrets.GCS_SA }}
+          service_account_key: ${{ secrets.GCS_KEY }}
+          project_id: poluare-urbana
+          
       # imports an action from another repository, 
       # that deals with the dependencies
       - uses: r-lib/actions/setup-r-dependencies@v2
@@ -37,13 +44,10 @@ jobs:
       - name: Execute Script
         run: |
           Rscript "main.R"           
-      - name: Commit files
+      - name: Commit files on google cloud storage
         run: |
-          git config --local user.name actions-user
-          git config --local user.email "actions@github.com"
-          git add data/*
-          git commit -am "GH ACTION Headlines $(date)"
-          git push origin main
+          gsutil mv *json gs://poluare
+          
         env: 
           REPO_KEY: ${{secrets.GITHUB_TOKEN}}
           username: github-actions
