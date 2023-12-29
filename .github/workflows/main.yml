@@ -20,7 +20,7 @@ jobs:
       with:
         token_format: 'access_token'
         project_id: $${{ secrets.PROJECT_ID }}
-        service_account: ${{ secrets.GCS_SA }}
+        credentials_json: ${{ secrets.GCS_SA }}
        
     - uses: 'google-github-actions/setup-gcloud@v2'
       with:
