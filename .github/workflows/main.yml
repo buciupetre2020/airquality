@@ -46,7 +46,9 @@ jobs:
           Rscript "main.R"           
       - name: Commit files on google cloud storage
         run: |
-          gsutil mv /data/* gs://poluare
+          gsutil mv data/*statii* gs://poluare/statii
+          gsutil mv data/*info* gs://poluare/info
+          rm -r data/*
           
         env: 
           REPO_KEY: ${{secrets.GITHUB_TOKEN}}
