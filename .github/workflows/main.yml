@@ -23,7 +23,6 @@ jobs:
         workload_identity_provider: ${{ secrets.GCS_WIF }}
         service_account: ${{ secrets.GCS_SA }}
        
-    - name: 'Set up Cloud SDK'
     - uses: 'google-github-actions/setup-gcloud@v2'
       with:
         version: '>=363.0.0'
