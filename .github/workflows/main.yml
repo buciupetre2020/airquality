@@ -12,6 +12,9 @@ jobs:
     
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }} 
+      REPO_KEY: ${{secrets.GITHUB_TOKEN}}
+      username: github-actions
+
       
     steps:
       # imports an action from another repository, 
@@ -64,6 +67,4 @@ jobs:
           gsutil mv -n data/*info* gs://poluare-dataset/info
           rm -r data/*
           
-        env: 
-          REPO_KEY: ${{secrets.GITHUB_TOKEN}}
-          username: github-actions
+       
