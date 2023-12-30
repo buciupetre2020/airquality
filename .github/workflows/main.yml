@@ -7,27 +7,6 @@ on:
 name: air quality
 
 jobs:
-  google-auth: 
-    runs-on: ubuntu-latest
-    permissions: 
-      contents: 'write'
-      id-token: 'write'
-      
-    steps:
-    - uses: 'actions/checkout@v4'
-    
-    - uses: 'google-github-actions/auth@v2'
-      with:
-        token_format: 'access_token'
-        project_id: ${{ secrets.PROJECT_ID }}
-        workload_identity_provider: ${{ secrets.GCS_WIF }}
-        service_account: ${{ secrets.GCS_SA }}
-       
-    - uses: 'google-github-actions/setup-gcloud@v2'
-      with:
-        version: '>=363.0.0'
-        project_id: poluare-urbana
-    
   run-r-script:
     runs-on: ubuntu-latest
     
@@ -58,7 +37,28 @@ jobs:
       - name: Execute Script
         run: |
           Rscript "main.R"           
-      - name: Commit files on google cloud storage
+
+  google-auth: 
+    runs-on: ubuntu-latest
+    permissions: 
+      contents: 'write'
+      id-token: 'write'
+      
+    steps:
+    - uses: 'actions/checkout@v4'
+    
+    - uses: 'google-github-actions/auth@v2'
+      with:
+        token_format: 'access_token'
+        project_id: ${{ secrets.PROJECT_ID }}
+        workload_identity_provider: ${{ secrets.GCS_WIF }}
+        service_account: ${{ secrets.GCS_SA }}
+       
+    - uses: 'google-github-actions/setup-gcloud@v2'
+      with:
+        version: '>=363.0.0'
+        project_id: poluare-urbana
+    
         run: |
           gsutil mv -n data/*statii* gs://poluare-dataset/statii
           gsutil mv -n data/*info* gs://poluare-dataset/info
