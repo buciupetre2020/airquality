@@ -68,9 +68,10 @@ jobs:
         with:
           version: '>=363.0.0'
           project_id: poluare-urbana
-    
-          run: |
-            gsutil mv -n data/*statii* gs://poluare-dataset/statii
-            gsutil mv -n data/*info* gs://poluare-dataset/info
+          
+      - name: Commit to gcloud 
+        run: |
+          gsutil mv -n data/*statii* gs://poluare-dataset/statii
+          gsutil mv -n data/*info* gs://poluare-dataset/info
           
        
