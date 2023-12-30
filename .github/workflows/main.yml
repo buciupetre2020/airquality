@@ -60,8 +60,8 @@ jobs:
           Rscript "main.R"           
       - name: Commit files on google cloud storage
         run: |
-          gsutil mv -n data/*statii* gs://poluare/statii
-          gsutil mv -n data/*info* gs://poluare/info
+          gsutil mv -n data/*statii* gs://poluare-dataset/statii
+          gsutil mv -n data/*info* gs://poluare-dataset/info
           rm -r data/*
           
         env: 
