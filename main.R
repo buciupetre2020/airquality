@@ -1,7 +1,7 @@
 library(httr)
 library(jsonlite)
 
-bounds <- "25.9666736896155,44.3342474501834,26.2255725292719,44.5414092689562"
+bounds <- "13.68,46.94,36.10,55.30"
 
 statii <- httr::content(httr::POST("https://api.waqi.info/mapq2/bounds",
                                    body = list(bounds=bounds),
