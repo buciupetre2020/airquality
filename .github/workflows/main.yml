@@ -73,5 +73,5 @@ jobs:
         run: |
           gsutil mv -n data/*statii* gs://poluare-dataset/statii
           gsutil mv -n data/*info* gs://poluare-dataset/info
-          
+          rm data/*json
        
