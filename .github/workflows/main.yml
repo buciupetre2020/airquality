@@ -1,6 +1,6 @@
 on: 
   schedule: 
-    - cron: "0 */60 * * *"
+    - cron: "0 */48 * * *"
     
   workflow_dispatch:
   
@@ -39,6 +39,8 @@ jobs:
           packages: |
             any::httr
             any::jsonlite
+            any::data.table
+            any::collapse
           
       - name: Execute Script
         run: |
@@ -49,7 +51,7 @@ jobs:
           git config --local user.name actions-user
           git config --local user.email "actions@github.com"
           git add data/*
-          git commit -am "GH ACTION Headlines $(date)"
+          git commit -am "GH ACTION $(date)"
           git push origin main
         env: 
           REPO_KEY: ${{secrets.GITHUB_TOKEN}}
@@ -73,5 +75,4 @@ jobs:
         run: |
           gsutil mv -n data/*statii* gs://poluare-dataset/statii
           gsutil mv -n data/*info* gs://poluare-dataset/info
-          rm data/*json
        
