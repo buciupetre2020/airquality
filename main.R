@@ -51,7 +51,7 @@ labels <- httr::content(httr::POST("https://api.waqi.info/mapq2/bounds",
 #pune ca csv curățat
 labels <- informatii(labels)
 
-fwrite(labels, paste0("data/info", "labels", Sys.Date(), ".csv"))
+fwrite(labels, paste0("data/info/", "labels", Sys.Date(), ".csv"))
 
 
 #acum măsurătorile stațiilor
@@ -59,7 +59,7 @@ ids <- gsub("[A-Z]+", "", labels$id)
 
 statii <- sapply(ids, function(id) content(GET(paste0("https://airnet.waqi.info/airnet/feed/hourly-cached/", id)))$data) 
 statii <- proceseaza(statii)
-fwrite(statii, paste0("data/statii", "statii", Sys.Date(), ".csv"))
+fwrite(statii, paste0("data/statii/", "statii", Sys.Date(), ".csv"))
 
 
                  
