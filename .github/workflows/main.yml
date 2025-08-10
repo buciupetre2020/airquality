@@ -73,6 +73,6 @@ jobs:
           
       - name: Commit to gcloud 
         run: |
-          gsutil mv -n data/*statii* gs://poluare-dataset/statii
-          gsutil mv -n data/*info* gs://poluare-dataset/info
+          gsutil mv -n data/statii/*csv gs://poluare-dataset/statii
+          gsutil mv -n data/info/*csv gs://poluare-dataset/info
        
