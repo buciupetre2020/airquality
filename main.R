@@ -111,12 +111,29 @@ grafic <- statii_last |> fsubset(field %in% c('met.t', 'met.p', 'met.h', 'pm25',
   labs(title = paste0('Poluare București, ', Sys.Date()), x='Oră', y='Valoare') +
   hrbrthemes::theme_ipsum_es()
 
+link <- paste0("data/grafic_", Sys.Date(), ".png")
+
 #scrie graficul
-png(paste0("data/grafic_", Sys.Date(), ".png"),  res=300, width=3200, height=2000)
+png(link, res=300, width=3200, height=2000)
 print(grafic)
 dev.off()
 
-                 
+
+payload <- list(
+  text = "📷 Poluarea azi în București",
+  attachments = list(
+    list(
+      fallback = "GitHub Actions + AQICN API",
+      image_url = paste0("https://raw.githubusercontent.com/buciupetre2020/airquality/refs/heads/main/data/", link)
+    )
+  )
+)
+
+POST(
+  url = 'https://hooks.slack.com/services/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',
+  body = toJSON(payload, auto_unbox = TRUE),
+  encode = "json"
+)
 
 
 
