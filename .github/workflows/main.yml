@@ -41,6 +41,9 @@ jobs:
             any::jsonlite
             any::data.table
             any::collapse
+            any::ggplot2
+            any::lubridate
+            any::hrbrthemes
           
       - name: Execute Script
         run: |
