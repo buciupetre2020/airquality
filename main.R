@@ -124,7 +124,7 @@ payload <- list(
   attachments = list(
     list(
       fallback = "GitHub Actions + AQICN API",
-      image_url = paste0("https://raw.githubusercontent.com/buciupetre2020/airquality/refs/heads/main/data/", link)
+      image_url = paste0("https://raw.githubusercontent.com/buciupetre2020/airquality/blob/main/data/", link)
     )
   )
 )
