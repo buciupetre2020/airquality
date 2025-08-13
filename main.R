@@ -76,18 +76,8 @@ statii <- statii |>
   fmutate(time = lubridate::parse_date_time(time, orders='ymdHMS') + lubridate::hours(2)) |> 
   fgroup_by(field, id) |> roworder(time) |>
   fmutate(pos = as.integer(time)/3600) |> fungroup() |>
-  fsubset(pos > max(pos) - 72) |> fselect(-pos) |> roworder(field, id, time) |>
-  fgroup_by(field, id) |> 
-  fmutate(const=fnunique(value)) |> 
-  fmutate(crestere = fsd(fgrowth(value))) |> fungroup() |> fsubset(const > 10) |>
-  fgroup_by(field) |> fmutate(categ = fquantile(crestere, 0.1)) |> fungroup() |>
-  fsubset(crestere > categ) |> fselect(-const, -crestere, -categ)
-
-missing <- statii |> fcount(id, field, sort=T) |> 
-  fsubset(N>60) |> fselect(id, field) |> funique()
-
-statii <- join(statii, missing, how='inner') |>
-          roworder(time, field, id)
+  fsubset(pos > max(pos) - 72) |> fselect(-pos) |> roworder(field, id, time)
+                 
                  
 fwrite(statii, paste0("data/statii/", "statii", Sys.Date(), ".csv"))
 
