@@ -120,7 +120,7 @@ payload <- list(
 )
 
 POST(
-  url = 'https://hooks.slack.com/services/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',
+  url = 'https://hooks.slack.com/services/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',
   body = toJSON(payload, auto_unbox = TRUE),
   encode = "json"
 )
