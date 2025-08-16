@@ -82,7 +82,7 @@ statii <- statii |>
 fwrite(statii, paste0("data/statii/", "statii", Sys.Date(), ".csv"))
 
 zile <- list.files('data/statii/', pattern='*csv')
-zile <- zile[{length(zile)-3}:length(zile)]
+zile <- zile[{length(zile)-5}:length(zile)]
 
 statii_last <- rbindlist(lapply(paste0("data/statii/", zile), fread)) |> funique()
                  
