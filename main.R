@@ -82,7 +82,7 @@ statii <- statii |>
 fwrite(statii, paste0("data/statii/", "statii", Sys.Date(), ".csv"))
 
 zile <- list.files('data/statii/', pattern='*csv')
-zile <- zile[{length(zile)-5}:length(zile)]
+zile <- zile[{length(zile)-10}:length(zile)]
 
 statii_last <- rbindlist(lapply(paste0("data/statii/", zile), fread)) |> funique()
                  
@@ -104,7 +104,7 @@ grafic <- statii_last |> fsubset(field %in% c('met.t', 'met.p', 'met.h', 'pm25',
 link <- paste0("data/grafic_", Sys.Date(), ".png")
 
 #scrie graficul
-png(link, res=300, width=3200, height=2000)
+png(link, res=250, width=3200, height=2000)
 print(grafic)
 dev.off()
 
