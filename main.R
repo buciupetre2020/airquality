@@ -4,8 +4,8 @@ library(data.table)
 library(collapse)
 library(ggplot2)
 library(lubridate)
-library(hrbrthemes)
 
+theme_set(theme_minimal())
 
 #pentru fourier features
 transforma <- function(x, k=24, f=sin) {
