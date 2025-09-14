@@ -43,7 +43,6 @@ jobs:
             any::collapse
             any::ggplot2
             any::lubridate
-            any::hrbrthemes
           
       - name: Execute Script
         run: |
